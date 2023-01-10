@@ -1,3 +1,3 @@
-const BaseURL='http://localhost:8089'
+const BaseURL='https://besteagle.herokuapp.com'
 
 export {BaseURL}
