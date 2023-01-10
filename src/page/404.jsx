@@ -16,9 +16,7 @@ const ErrorPage = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-4 col-sm-6 col-12">
                         <div className="four-zero-content">
-                            <Link to="/">
-                                <img src="assets/images/logo/01.png" alt="CodexCoder" />
-                            </Link>
+                            
                             <h2 className="title">{title}</h2>
                             <p>{desc}</p>
                             <Link to="/" className="lab-btn"><span>{btnText} <i className="icofont-external-link"></i></span></Link>

@@ -34,7 +34,7 @@ const HeaderThree = () => {
                                     <ul className={`lab-ul ${menuToggle ? "active" : ""}`}>
                                     
                                         <li className="menu-item-has-children">
-                                            <NavLink to="/index-3">Home</NavLink>
+                                            <NavLink to="/">Home</NavLink>
                                         </li>
                                         <li className="menu-item-has-children">
                                             <NavLink to="/course">Course</NavLink>

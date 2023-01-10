@@ -1,6 +1,6 @@
 import { Component, Fragment } from "react";
-import FooterThree from "../component/layout/footer-3";
-import HeaderFour from "../component/layout/header-4";
+import FooterThree from "../component/layout/footer";
+import HeaderFour from "../component/layout/header-3";
 import AppSection from "../component/section/appsection";
 import BannerFour from "../component/section/banner-4";
 import CategoryThree from "../component/section/category-3";
@@ -16,14 +16,10 @@ const HomeFour = () => {
         <Fragment>
             <HeaderFour />
             <BannerFour />
-            <CategoryThree />
+       
             <CourseFour />
-            <Register />
-            <ClientsTwo />
-            <InstructorTwo />
-            <AppSection />
-            <Sponsor />
-            <FooterThree />
+        
+        
         </Fragment>
     );
 }

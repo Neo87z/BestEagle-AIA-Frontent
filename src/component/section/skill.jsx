@@ -42,7 +42,7 @@ const Skill = () => {
                         <div className="section-header">
                             <h2 className="title">{title}</h2>
                             <Link to="/signup" className="lab-btn"><span>{btnText}</span></Link>&nbsp;&nbsp;&nbsp;
-                            <Link to="/login" className="lab-btn"><span>{btnText}</span></Link>
+                            <Link to="/login" className="lab-btn"><span>Login</span></Link>
                         </div>
 
                     </div>

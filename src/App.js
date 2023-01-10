@@ -13,10 +13,12 @@ import BlogSingle from "./page/blog-single";
 import CartPage from "./page/cart-page";
 import ContactPage from "./page/contact";
 import CoursePage from "./page/course";
+import CoursePerSubject from "./page/course-per-subject";
 import CourseSingle from "./page/course-single";
 import CourseView from "./page/course-view";
 import ForgetPass from "./page/forgetpass";
 import Home from "./page/home";
+import HomeLogout from "./page/homelogout";
 import HomeTwo from "./page/home-2";
 import HomeThree from "./page/home-3";
 import HomeFour from "./page/home-4";
@@ -41,9 +43,12 @@ function App() {
 			<ScrollToTop />
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/logout" element={<HomeLogout />} />
+				<Route path="/courses-per-subject" element={<CoursePerSubject />} />
+				
 				<Route path="index-2" element={<HomeTwo />} />
 				<Route path="index-3" element={<HomeThree />} />
-				<Route path="index-4" element={<HomeFour />} />
+				<Route path="data-library" element={<HomeFour />} />
 				<Route path="index-5" element={<HomeFive />} />
 				<Route path="index-6" element={<HomeSix />} />
 				<Route path="index-7" element={<HomeSeven />} />

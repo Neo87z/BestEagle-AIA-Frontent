@@ -3,9 +3,9 @@ import CountUp from 'react-countup';
 import { Link } from "react-router-dom";
 
 const subTitle = "Why Choose Us";
-const title = "Become Online Instructor";
+const title = "Become A Sucessfull ENTREPRENEUR";
 const desc = "Take courses on your any device with our app & learn all time what you want. Just download & install & start to learn";
-const btnText = "Apply  Now";
+const btnText = "Register Now";
 
 
 const countList = [
@@ -17,7 +17,7 @@ const countList = [
     {
         iconName: 'icofont-graduate-alt',
         count: '50',
-        text: 'Certified Trainer',
+        text: 'Certified Trainers',
     },
     {
         iconName: 'icofont-notification',
@@ -57,7 +57,7 @@ const InstructorTwo = () => {
                         </div>
                         <div className="col">
                             <div className="instructor-thumb">
-                                <img src="assets/images/instructor/01.png" alt="education" />
+                                <img  src="assets/images/instructor/01.png" alt="education" />
                             </div>
                         </div>
                     </div>

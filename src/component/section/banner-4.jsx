@@ -2,8 +2,8 @@
 import SelectCatagory from "../sidebar/selectCatagory";
 
 
-const title = <h2>Search Your One From <span>150+</span> Online Courses</h2>;
-const desc = "We Have The Largest Collection of Courses";
+const title = <h2>BestEagle Online  <span>Data Library</span> </h2>;
+const desc = "Easily Acess Any Of The Courese Material Offered By BestEagle";
 
 
 const bannerList = [
@@ -28,16 +28,12 @@ const BannerFour = () => {
                 <div className="banner-content">
                     {title}
                     <form>
-                        <SelectCatagory select={'all'} />
-                        <input type="text" name="search" placeholder="Search your theme" />
+                      
+                        <input type="text" name="search" placeholder="Enter The Name Of The Material " />
                         <button type="submit"><i className="icofont-search"></i></button>
                     </form>
                     <p>{desc}</p>
-                    <ul className="lab-ul">
-                        {bannerList.map((val, i) => (
-                            <li key={i}><i className={val.iconName}></i> {val.text}</li>
-                        ))}
-                    </ul>
+                    
                 </div>
             </div>
         </div>

@@ -983,7 +983,7 @@ footer.style-2 .footer-top .footer-item .footer-inner .footer-content .content u
 .course-showing-part .course-showing-part-right .select-item .select-icon,
 .course-showing-part .course-showing-part-right .select-item select,
 .theme-color {
-    color: #f16126
+    color: #f12626
 }
 
 .news-letter .section-wrapper .news-form form .nf-list::after,
@@ -1041,7 +1041,7 @@ footer.style-2 .footer-top .footer-item .footer-inner .footer-content .content u
 .or,
 .clients-slider-nav:hover,
 .course-navi {
-    background: #f16126
+    background: #f12d26
 }
 
 .news-letter .section-wrapper .news-form form .nf-list input[type=submit],
@@ -1675,7 +1675,7 @@ footer.style-2 .footer-top .footer-item.twitter-post .footer-inner .footer-conte
 .lab-btn-text.yellow-color i,
 .yellow-color,
 .section-header .subtitle.yellow-color {
-    color: #ffdf40
+    color: #D20739
 }
 
 .social-icons li a.facebook {
@@ -1753,7 +1753,7 @@ footer.style-2 .footer-top .footer-item.twitter-post .footer-inner .footer-conte
 .yellow-color-section .section-wrapper .course-item.style-3 .course-inner .course-content .lab-btn,
 .yellow-color-section .section-wrapper .course-item.style-3 .course-inner .course-thumb ul li .price,
 .yellow-color-section .section-header .course-navi {
-    background: #ffdf40
+    background: #D20739
 }
 
 .social-icons li a.pinterest {
@@ -2151,7 +2151,7 @@ button {
     font-size: 1.125rem;
     letter-spacing: 5px;
     text-transform: uppercase;
-    color: #f16126;
+    color: #f12626;
     font-weight: 500;
     -webkit-transform: translateY(-8px);
     -ms-transform: translateY(-8px);
@@ -2160,7 +2160,7 @@ button {
 
 .lab-btn {
     padding: 10px 30px;
-    background: #f16126;
+    background: #f12d26;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -2186,12 +2186,12 @@ button {
 }
 
 .lab-btn-text i {
-    color: #f16126;
+    color: #f14526;
     margin-left: 5px
 }
 
 .lab-btn-text:hover {
-    color: #f16126
+    color: #f12626
 }
 
 .header-shadow {
@@ -2232,7 +2232,7 @@ button {
 
 .default-pagination li a:hover,
 .default-pagination li a.active {
-    background: #f16126;
+    background: #f12626;
     box-shadow: none;
     color: #fff
 }
@@ -2459,7 +2459,7 @@ button {
 .or::after {
     top: 50%;
     left: 50%;
-    background: #f16126;
+    background: #f13e26;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -2546,16 +2546,16 @@ button {
 }
 
 .yellow-color-section .section-wrapper .course-item.style-3 .course-inner .course-content .lab-btn:hover {
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    box-shadow: 0 5px 10px rgba(255, 70, 64, 0.5)
 }
 
 .yellow-color-section .post-item.style-3 .post-inner .post-content .lab-btn {
     background: transparent;
-    border: 2px solid #ffdf40
+    border: 2px solid #ff4d40
 }
 
 .yellow-color-section .post-item.style-3 .post-inner .post-content .lab-btn:hover {
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    box-shadow: 0 5px 10px rgba(255, 70, 64, 0.5)
 }
 
 .preloader {
@@ -2565,7 +2565,7 @@ button {
     z-index: 9999;
     width: 100%;
     height: 100%;
-    background: #f16126
+    background: #f12626
 }
 
 .preloader .preloader-inner {
@@ -2661,17 +2661,17 @@ button {
 }
 
 .scrollToTop.yellow-color i:hover {
-    box-shadow: 0px 5px 20px 0px rgba(255, 223, 64, .5)
+    box-shadow: 0px 5px 20px 0px rgba(255, 93, 64, 0.5)
 }
 
 .listActive .list,
 .gridActive .grid {
-    color: #f16126 !important
+    color: #f12626 !important
 }
 
 .RevActive .rev,
 .DescActive .desc {
-    background: #f16126 !important
+    background: #f14526 !important
 }
 
 .search-close {
@@ -2917,7 +2917,7 @@ button {
     padding: 5px 15px;
     left: 0;
     bottom: 0;
-    background: rgba(255, 223, 64, .85)
+    background: rgba(255, 86, 64, 0.85)
 }
 
 .course-item.style-4 .course-inner .course-thumb .course-category .course-cate {
@@ -3206,7 +3206,7 @@ button {
 
 .post-item.style-3 .post-inner .post-content .lab-btn {
     background: transparent;
-    border: 2px solid #f16126
+    border: 2px solid #f12626
 }
 
 .post-item.slider-post .post-inner:hover .post-thumb.post-thumb-slider .post-thumb-slider-next {
@@ -3246,7 +3246,7 @@ button {
 .post-item.slider-post .post-inner .post-thumb.post-thumb-slider .post-thumb-slider-next .active,
 .post-item.slider-post .post-inner .post-thumb.post-thumb-slider .post-thumb-slider-prev:hover,
 .post-item.slider-post .post-inner .post-thumb.post-thumb-slider .post-thumb-slider-prev .active {
-    background: #f16126;
+    background: #f12626;
     color: #fff
 }
 
@@ -3445,7 +3445,7 @@ button {
 
 .event-item .event-inner .event-content .event-date-info .edi-box {
     padding: 15px 10px;
-    border: 2px solid #f16126;
+    border: 2px solid #f13e26;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px
@@ -3505,7 +3505,7 @@ button {
 }
 
 .event-item.style-2 .event-inner .event-content .lab-btn:hover {
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    box-shadow: 0 5px 10px rgba(255, 93, 64, 0.5)
 }
 
 .client-item .client-inner {
@@ -3519,7 +3519,7 @@ button {
     width: 100px;
     height: 100px;
     margin: 0 auto 30px;
-    border: 2px solid #f16126;
+    border: 2px solid #f12d26;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%
@@ -3813,7 +3813,7 @@ button {
         top: 100%;
         position: absolute;
         content: "";
-        background: #f16126;
+        background: #f13426;
         -webkit-transition: all .3s ease;
         -moz-transition: all .3s ease;
         transition: all .3s ease;
@@ -3840,19 +3840,19 @@ button {
 
 @media(max-width: 991px) {
     .header-section.style-4 .menu>ul {
-        background: #ffdf40
+        background: #D20739
     }
     .header-section.style-4 .menu>ul li a {
         color: #101115;
         border-top: 1px solid rgba(16, 17, 21, .1)
     }
     .header-section.style-4 .menu>ul li a:hover {
-        background: #ffdf40
+        background: #D20739
     }
 }
 
 .header-section.style-4 .lab-btn:hover {
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    box-shadow: 0 5px 10px rgba(255, 70, 64, 0.5)
 }
 
 .header-section.style-5.header-fixed {
@@ -3861,7 +3861,7 @@ button {
 
 @media(min-width: 992px) {
     .header-section.style-5 .header-bottom .menu>ul>li>a::after {
-        background: #ffdf40
+        background: #D20739
     }
 }
 
@@ -3905,7 +3905,7 @@ button {
 
 @media(min-width: 992px) {
     .header-section.style-7 .header-top-area .social-icons li a {
-        color: #ffdf40
+        color: #D20739
     }
 }
 
@@ -3919,7 +3919,7 @@ button {
     }
     .header-section.style-7 .menu>ul li ul li a:hover,
     .header-section.style-7 .menu>ul li ul li a.active {
-        background: #ffdf40;
+        background: #D20739;
         color: #101115
     }
     .header-section.style-7 .menu>ul li ul li a.active::after,
@@ -3930,7 +3930,7 @@ button {
 
 @media(max-width: 991px) {
     .header-section.style-7 .menu>ul {
-        background: #ffdf40
+        background: #D20739
     }
     .header-section.style-7 .menu>ul li a {
         color: #101115;
@@ -3963,7 +3963,7 @@ button {
     height: 50px;
     line-height: 50px;
     width: 50px;
-    color: #f16126;
+    color: #f13426;
     background: transparent;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -4084,7 +4084,7 @@ button {
 }
 
 .header-wrapper .menu-area .login {
-    color: #f16126;
+    color: #fc1e01;
     border-radius: 2px 0 0 2px
 }
 
@@ -4170,7 +4170,7 @@ button {
     }
     .menu>ul li ul li a:hover,
     .menu>ul li ul li a.active {
-        background: #f16126;
+        background: #cc1f08;
         padding-left: 22px;
         color: #fff
     }
@@ -4211,7 +4211,7 @@ button {
         -ms-transform: scaleY(0);
         transform: scaleY(0);
         transform-origin: top;
-        background: #f16126;
+        background: #da0a03;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px)
     }
@@ -4408,7 +4408,7 @@ button {
 }
 
 .shop-menu li:hover>a {
-    color: #f16126 !important
+    color: #eb1404 !important
 }
 
 .shop-menu li:hover>a::before {
@@ -4420,11 +4420,11 @@ button {
 
 .shop-menu li:hover>a:hover::after,
 .shop-menu li:hover>a:hover::before {
-    background: #f16126
+    background: #e41010
 }
 
 .shop-menu li.open>a::after {
-    background: #f16126
+    background: #e90707
 }
 
 .shop-menu li.open>a::before {
@@ -4611,7 +4611,7 @@ button {
 }
 
 .banner-section .cbs-content-list ul li.shape-2 a {
-    background-image: linear-gradient(to right, #ff5dcc, #ff4ca2, #ff4878, #ff514f, #f16126)
+    background-image: linear-gradient(to right, #ff5dcc, #ff4ca2, #ff4878, #ff514f, #e71009)
 }
 
 .banner-section .cbs-content-list ul li.shape-2 a::after {
@@ -4720,7 +4720,7 @@ button {
 }
 
 .banner-section .section-wrapper .banner-content .subtitle {
-    color: #f16126;
+    color: #f12626;
     letter-spacing: 5px;
     font-size: 18px
 }
@@ -4771,7 +4771,7 @@ button {
 
 .banner-section .section-wrapper .banner-content form button {
     color: #fff;
-    background: #f16126
+    background: #f12d26
 }
 
 .banner-section .section-wrapper .banner-content .banner-catagory {
@@ -4797,7 +4797,7 @@ button {
 }
 
 .banner-section .section-wrapper .banner-content .banner-catagory ul li a:hover {
-    color: #f16126
+    color: #f12626
 }
 
 .banner-section .section-wrapper .banner-thumb {
@@ -4820,7 +4820,7 @@ button {
     width: 50%;
     height: 100%;
     top: 0;
-    border-bottom: 875px solid #f16126;
+    border-bottom: 875px solid #f12626;
     border-right: 960px solid transparent;
     z-index: 1
 }
@@ -5095,8 +5095,8 @@ button {
 }
 
 .banner-section.style-7 .section-wrapper .banner-top .banner-content .lab-btn:hover {
-    border-color: #ffdf40;
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    border-color: #D20739;
+    box-shadow: 0 5px 10px rgba(255, 102, 64, 0.5)
 }
 
 .banner-section.style-7 .section-wrapper .banner-bottom {
@@ -5311,11 +5311,11 @@ button {
 
 .category-section.style-4 .section-wrapper .lab-btn {
     background: transparent;
-    border: 2px solid #ffdf40
+    border: 2px solid #D20739
 }
 
 .category-section.style-4 .section-wrapper .lab-btn:hover {
-    box-shadow: 0 5px 10px rgba(255, 223, 64, .5)
+    box-shadow: 0 5px 10px rgba(255, 109, 64, 0.5)
 }
 
 .course-section .section-wrapper .col:nth-of-type(6n + 2) .course-item .course-inner .course-content .course-category .course-cate a {
@@ -5790,7 +5790,7 @@ button {
 .contact-info-section .section-wrapper .cinfo-item .cinfo-inner .cinfo-thumb {
     width: 120px;
     height: 120px;
-    border: 2px solid #ffdf40;
+    border: 2px solid #D20739;
     line-height: 116px;
     margin: 0 auto 30px;
     z-index: 1;
@@ -5852,10 +5852,10 @@ button {
 }
 
 .instructor-section.style-2::after {
-    right: -130px;
+    right: -191px;
     bottom: 0;
     width: 60%;
-    transform: skewX(-20deg)
+    transform: skewX(-0deg)
 }
 
 @media(max-width: 1199px) {
@@ -6278,7 +6278,7 @@ button {
 .workshop-join .section-wrapper .workshop-title h5::after {
     right: -30px;
     top: 0;
-    border-left: 30px solid #f16126;
+    border-left: 30px solid #f13426;
     border-top: 45px solid transparent
 }
 
@@ -6501,7 +6501,7 @@ button {
     width: 80px;
     height: 80px;
     line-height: 80px;
-    border: 1px solid #ffdf40;
+    border: 1px solid #D20739;
     font-size: 1.875rem;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -6756,7 +6756,7 @@ button {
     bottom: 50%;
     right: 50%;
     z-index: 3;
-    border: 2px solid #ffdf40;
+    border: 2px solid #D20739;
     font-weight: 700;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -6933,7 +6933,7 @@ button {
 
 .app-section .section-header .lab-btn {
     background: transparent;
-    border: 2px solid #ffdf40
+    border: 2px solid #D20739
 }
 
 .app-section .section-header .lab-btn:hover {
@@ -7424,7 +7424,7 @@ button {
     line-height: 60px;
     font-size: 15px;
     text-align: center;
-    background: #f16126;
+    background: #f12626;
     top: 50%;
     outline: none;
     transform: translateY(-50%);
@@ -7651,7 +7651,7 @@ button {
 }
 
 .shop-single .review .review-content .review-showing .client-review .review-form .review-title h5::after {
-    border-bottom: 4px dotted #f16126;
+    border-bottom: 4px dotted #f12626;
     width: 20px;
     bottom: -20px;
     left: 55px
@@ -7741,12 +7741,12 @@ button {
     content: "";
     top: 8px;
     left: 0;
-    color: #f16126;
+    color: #f13e26;
     font-family: IcoFont !important
 }
 
 .shop-single .review .review-content .ratting i {
-    color: #f16126
+    color: #f12626
 }
 
 .shop-cart .section-wrapper .cart-top {
@@ -7936,7 +7936,7 @@ button {
 }
 
 .shop-cart .section-wrapper .cart-bottom .cart-checkout-box .cart-checkout input[type=submit]:hover {
-    border-color: #f16126
+    border-color: #f12626
 }
 
 .shop-cart .section-wrapper .cart-bottom .shiping-box {
@@ -8190,7 +8190,7 @@ button {
 }
 
 .course-select-area .csa-body ul li .card .card-body .course-lists .csa-left>i.complite {
-    color: #f16126
+    color: #f12626
 }
 
 .course-select-area .csa-body ul li .card .card-body .course-lists .csa-left h6,
@@ -8319,7 +8319,7 @@ button {
 }
 
 .course-view-section .course-view .video-list-area .video-body .course-select-area .csa-body::-webkit-scrollbar-thumb {
-    background: #f16126;
+    background: #f12626;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     border-radius: 12px
@@ -8353,7 +8353,7 @@ button {
     left: 0;
     width: 100%;
     height: 2px;
-    background: #f16126;
+    background: #f12626;
     transform-origin: left;
     -webkit-transform: scaleX(0);
     -ms-transform: scaleX(0);
@@ -9019,7 +9019,7 @@ button {
 
 .blog-single .section-wrapper .post-item .post-inner .post-content .tags-section .tags li a:hover,
 .blog-single .section-wrapper .post-item .post-inner .post-content .tags-section .tags li a .active {
-    border-color: #f16126
+    border-color: #f12626
 }
 
 .blog-single .section-wrapper .post-item .post-inner .post-content .tags-section .scocial-media {
@@ -9377,7 +9377,7 @@ footer.style-2 .footer-top.dark-view * {
 }
 
 .footer-bottom .section-wrapper p a:hover {
-    color: #f16126
+    color: #f12626
 }
 
 .news-footer-wrap {

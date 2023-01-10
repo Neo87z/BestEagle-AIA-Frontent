@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header-3";
 import PageHeader from "../component/layout/pageheader";
@@ -8,11 +8,11 @@ import Pagination from "../component/sidebar/pagination";
 import Rating from "../component/sidebar/rating";
 import SkillSelect from "../component/sidebar/skill-select";
 import React, { useState, useRef, useEffect, Component, Fragment } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Axios from 'axios';
-
+import { BaseURL} from '../constants'
 import CourseTwo from "../component/section/course-2";
 import CategoryTwo from "../component/section/category-2";
-import { BaseURL} from '../constants'
 
 const subTitle = "Featured Courses";
 const title = "Pick A Course To Get Started";
@@ -107,6 +107,13 @@ const courseList = [
 
 
 const CoursePage = () => {
+    const location = useLocation();
+    console.log(location, " useLocation Hook");
+    const dataNew = location.state?.data;
+    console.log(dataNew.CourseCateogry,"Filterrrrrrrrrrr")
+    const [Subtitle, setSubtitle] = useState("Featured Courses")
+
+  
 
 
     const [CourseList, setCourseList] = useState([])
@@ -117,26 +124,61 @@ const CoursePage = () => {
         tag: ["reactjs", "react-router-dom"]
     });
 
-    const [CountList, setCountList] = useState([])
-
 
 
 
     useEffect(() => {
         const controller = new AbortController();
+        if(dataNew.CourseCateogry == "CAAP"){
+            setSubtitle("Career Presentation Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "FC"){
+            setSubtitle("Foundation Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "IBSL"){
+            setSubtitle("IBSL Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "ORPP"){
+            setSubtitle("Online Role Play Presentation Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "OH"){
+            setSubtitle("Objection Handling Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "PXQP"){
+            setSubtitle("Product Explain & Quotation Practice Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "HN"){
+            setSubtitle("Health Need Courses")
+            
+    
+        }
+        if(dataNew.CourseCateogry == "FN"){
+            setSubtitle("CaForeing Language Courses")
+            
+    
+        }
+
 
         const fetchDta = async () => {
-            let URL=BaseURL+"/course/get-courses"
-            await Axios.get(URL).then((response) => {
+
+            let URL=BaseURL+"/course/get-courses-per-catergory"
+            await Axios.post(URL,{
+                CourseFilterID:dataNew.CourseCateogry
+            }).then((response) => {
                 console.log(response.data)
                 setCourseList(response.data)
-            })
-
-            let URL2=BaseURL+"/course/get-courses-per-catergory-count"
-            await Axios.get(URL2).then((response) => {
-                console.log(response.data,"Countttttttttttt")
-                setCountList(response.data)
-               
             })
 
         }
@@ -151,15 +193,15 @@ const CoursePage = () => {
     return (
         <Fragment>
             <Header />
-            <CategoryTwo />
+
 
 
             <div className="course-section padding-tb section-bg">
                 <div className="container">
                     <div className="section-wrapper">
-                       
+
                         <div className="section-header text-center">
-                            <span className="subtitle">{subTitle}</span>
+                            <span className="subtitle">{Subtitle}</span>
                             <h2 className="title">{title}</h2>
                         </div>
                         <div className="row g-4 justify-content-center row-cols-xl-3 row-cols-md-2 row-cols-1">
@@ -174,7 +216,10 @@ const CoursePage = () => {
 
                                                 <div className="course-category">
 
-                                                   
+                                                    <div className="course-reiew">
+                                                        <Rating />
+
+                                                    </div>
                                                 </div>
 
                                                 <Link to="/course-single" state={{
@@ -185,15 +230,14 @@ const CoursePage = () => {
                                                         "CourseOvervview": val.CourseOvervview,
                                                         "Lessons": val.Lessons,
                                                         "Language": val.Language,
-                                                        "CourseImage": val.Lessons,
                                                         "ID": val._id
 
                                                     }
                                                 }}><h4>{val.CourseDetails}</h4></Link>
                                                 <div className="course-details">
-                                                    <div className="couse-count"><i className="icofont-video-alt"></i>- Lessons </div>
-                                                    <div className="couse-topic"><i className="icofont-newspaper"></i> - Exams</div>
-                                                    <div className="couse-topic"><i className="icofont-stopwatch"></i> - Watch Hours</div>
+                                                    <div className="couse-count"><i className="icofont-video-alt"></i> </div>
+                                                    <div className="couse-topic"><i className="icofont-signal"></i> 0 Exams</div>
+                                                    <div className="couse-topic"><i className="icofont-signal"></i>  Watch Hours</div>
 
                                                 </div>
 

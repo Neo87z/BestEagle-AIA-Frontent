@@ -1,4 +1,5 @@
-import { Component, Fragment } from "react";
+
+import React, { useEffect, Fragment, useState } from 'react'
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import About from "../component/section/about";
@@ -14,32 +15,28 @@ import Instructor from "../component/section/instructor";
 import Sponsor from "../component/section/sponsor";
 import Clients from "../component/section/clients";
 import Student from "../component/section/student";
-import InstructorTwo from "../component/section/instructor-2";
 
 
 
 const Home = () => {
+    useEffect(() => {
+        const controller = new AbortController();
+        console.log("Logout")
+        localStorage.removeItem("FirstName");
+        localStorage.removeItem("LastName");
+        localStorage.removeItem("token");
+        window.location = `/`
+
+        return () => controller.abort();
+
+    }, []);
+
     return (
         <Fragment>
-             <HeaderThree />
-            <BannerThree />
-            <Student />
- 
-            
-          
-            
-          
-  
-            <Skill />
-            <InstructorTwo />
-          
-            <Instructor />
+            <HeaderThree />
 
-          
-           <br></br> <br></br>
-            <Footer />
         </Fragment>
     );
 }
- 
+
 export default Home;

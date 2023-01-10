@@ -80,8 +80,8 @@ const Student = () => {
                                                 <img src="assets/images/feedback/student/01.jpg" />
                                             </div>
                                             <div className="sftl-content">
-                                                <h6>Name</h6>
-                                                <span>Position</span>
+                                                <h6>Vinol Priyasenarath </h6>
+                                                <span>Area Development Manager</span>
                                             </div>
                                         </div>
 
@@ -99,8 +99,8 @@ const Student = () => {
                                                 <img src="assets/images/feedback/student/01.jpg" />
                                             </div>
                                             <div className="sftl-content">
-                                                <h6>Name</h6>
-                                                <span>Position</span>
+                                                <h6>Priyanthi Dias</h6>
+                                                <span>Business Development Manager</span>
                                             </div>
                                         </div>
 

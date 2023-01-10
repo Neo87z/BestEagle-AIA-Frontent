@@ -17,6 +17,7 @@ import Rating from "../component/sidebar/rating";
 import 'react-tabs/style/react-tabs.css';
 import { Button } from "bootstrap";
 import axios from 'axios';
+import { BaseURL} from '../constants'
 const title = "Foundation Course";
 const desc = "Brief description about the course";
 const author = "Shehan";
@@ -34,17 +35,17 @@ const csdcList = [
     {
         iconName: 'icofont-ui-alarm',
         leftText: 'Enrolled Students',
-        rightText: '857',
+        rightText: '-',
     },
     {
         iconName: 'icofont-book-alt',
         leftText: 'On Demand Video Hours',
-        rightText: '30:10:09',
+        rightText: '-:-:-',
     },
     {
         iconName: 'icofont-signal',
         leftText: 'Lessons',
-        rightText: '08',
+        rightText: '-',
     },
     {
         iconName: 'icofont-video-alt',
@@ -85,7 +86,7 @@ const categoryList = [
     },
 ]
 
-const CourseSingle = (props) => {
+const  CourseSingle = (props) => {
     const location = useLocation();
     console.log(location, " useLocation Hook");
     const data = location.state?.data;
@@ -106,6 +107,100 @@ const CourseSingle = (props) => {
         ID: "",
     })
 
+    const [CourseList, setCourseList] = useState([])
+    const [VedioLost, setVedioLost] = useState([])
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        const fetchDta = async () => {
+            Authenication()
+            console.log(data.ID, "IDDD")
+
+            let URL=BaseURL+"/course/get-section-per-seubject"
+            await Axios.post(URL, {
+
+                subjectID: data.ID
+
+            }).then((response) => {
+
+                setCourseList(response.data)
+                console.log(CourseList, "Doneeeeeeeeee")
+
+
+
+
+            })
+
+        }
+        fetchDta();
+
+
+        return () => controller.abort();
+
+    }, []);
+
+    const Authenication = () => {
+
+        let URL=BaseURL+"/student/Authenicate"
+      
+        axios.get(URL, {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+
+            },
+        })
+            .then(
+                (res => {
+                    console.log(res.data.Login, "Stateee")
+                    if (res.data.Login == true) {
+                        setLoggedStatus("True")
+
+                    }else{
+                        setLoggedStatus("False")
+                        localStorage.removeItem("FirstName");
+                        localStorage.removeItem("LastName");
+                    }
+
+                })
+            );
+    }
+
+
+
+    const [LoggedStatusFinal, setLoggedStatus] = useState(["False"])
+
+    useEffect(() => {
+
+
+        const controller = new AbortController();
+
+        const fetchDta = async () => {
+
+
+
+            let URL=BaseURL+"/course/get-vedio-per-seubject"
+            await Axios.post(URL, {
+
+                subjectID: data.ID
+
+            }).then((response) => {
+
+                setVedioLost(response.data)
+
+
+
+
+            })
+
+        }
+        fetchDta();
+
+
+        return () => controller.abort();
+
+    }, []);
+
 
 
 
@@ -113,8 +208,9 @@ const CourseSingle = (props) => {
     const SName = localStorage.getItem("FirstName") + " " + localStorage.getItem("LastName")
 
     const EnrollStudent = async (e) => {
-        console.log("here")
-        await axios.post('http://localhost:8089/course/enroll-course', {
+        let URL=BaseURL+"/course/enroll-course"
+
+        await axios.post(URL, {
             CourseID: data.ID,
             StudentName: SName,
 
@@ -122,10 +218,10 @@ const CourseSingle = (props) => {
             EnrollStatus: "Pending",
             EnrollDate: "2020/12/1",
             CompletedDate: "Pending",
-            CourseName:CourseDetails.CourseName
+            CourseName: CourseDetails.CourseName
 
         }).then(res => {
-            console.log(res);
+
             toast.success('Sucessfully Enrolled To The Course', {
                 position: "top-right",
                 autoClose: 5000,
@@ -135,9 +231,9 @@ const CourseSingle = (props) => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                });
+            });
             setNrolledStatus("Pending")
-            
+
 
         }).catch(err => {
             console.log(err);
@@ -167,22 +263,25 @@ const CourseSingle = (props) => {
 
         const fetchDta = async () => {
 
-            await Axios.post('http://localhost:8089/course/get-enrolled-Status', {
+
+            let URL=BaseURL+"/course/get-enrolled-Status"
+
+            await Axios.post(URL, {
                 StudentID: localStorage.getItem("StudentID"),
                 CourseID: CourseDetails.ID
 
             }).then((response) => {
 
                 if (response["data"]["Status"]) {
-                    console.log(response, "Datata")
+
                     setNrolledStatus("NotEnroleled")
-                    
+
 
                 } else {
 
-                    console.log(response, "Datata")
+
                     setNrolledStatus(response["data"][0]["EnrollStatus"])
-                    
+
                     this.setState({
                         submitted: true,
                     });
@@ -209,7 +308,7 @@ const CourseSingle = (props) => {
                     <div style={{ marginTop: '-200px' }} className="row justify-content-center justify-content-lg-between align-items-center flex-row-reverse">
                         <div className="col-lg-7 col-12">
                             <div className="pageheader-thumb">
-                                <img src="assets/images/pageheader/02.jpg" alt="rajibraj91" className="w-100" />
+                                <img src={data.CourseImage} alt="rajibraj91" className="w-100" />
 
                             </div>
                         </div>
@@ -217,8 +316,9 @@ const CourseSingle = (props) => {
                             <div className="pageheader-content">
 
                                 <h2 className="phs-title">{CourseDetails.CourseName}</h2>
+
                                 <p className="phs-desc">{CourseDetails.BriefDescription}</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -230,114 +330,98 @@ const CourseSingle = (props) => {
                         <div className="col-lg-8">
                             <div className="main-part">
                                 <div className="course-item">
-                                    <Tabs>
-                                        <TabList>
-                                            <Tab>Overview</Tab>
-                                            <Tab>Course Content</Tab>
-                                        </TabList>
 
-                                        <TabPanel>
-                                            <div className="course-inner">
+                                    <div className="course-video" style={{ marginTop: '-45px' }}>
+                                        <div className="course-video-title">
+                                            <h4>Course Content</h4>
+                                        </div>
+                                        <div className="course-video-content">
+                                            <div className="accordion" id="accordionExample">
 
-                                                <div className="course-content">
 
-                                                    <h3>Course Overview</h3>
-                                                    <p>{CourseDetails.CourseOvervview}</p>
-                                                    <h4>What You'll Learn in This Course:</h4>
-                                                    <ul className="lab-ul">
-                                                        <li><i className="icofont-tick-mark"></i>Ready to begin working on real-world data modeling projects</li>
-                                                        <li><i className="icofont-tick-mark"></i>Expanded responsibilities as part of an existing role</li>
-                                                        <li><i className="icofont-tick-mark"></i>Be able to create Flyers, Brochures, Advertisements</li>
-                                                        <li><i className="icofont-tick-mark"></i>Find a new position involving data modeling.</li>
-                                                        <li><i className="icofont-tick-mark"></i>Work with color and Gradients and Grids</li>
-                                                    </ul>
+                                                {CourseList.map((val, key) => {
+                                                    try {
 
-                                                </div>
 
-                                                <div className="course-content">
+                                                        if (key == 0) {
+                                                            return <div className="accordion-item">
+                                                                <div className="accordion-header" id="accordion01">
+                                                                    <button className="d-flex flex-wrap justify-content-between" data-bs-toggle="collapse" data-bs-target="#videolist1" aria-expanded="true" aria-controls="videolist1"><span>{CourseList[key].SectionNumber} .{CourseList[key].SectionName}</span> <span>- lessons, -:-</span> </button>
+                                                                </div>
+                                                                <div id="videolist1" className="accordion-collapse collapse show" aria-labelledby="accordion01" data-bs-parent="#accordionExample">
+                                                                    <ul className="lab-ul video-item-list">
+                                                                        {VedioLost.map((val, keyData) => {
+                                                                            console.log(CourseList[key].SectionNumber, "Sectionmnnnn", VedioLost[parseInt(CourseList[key].SectionNumber)].SectionNumber)
+                                                                            var x = parseInt(VedioLost[key].SectionNumber)
+                                                                            if (VedioLost[keyData].SectionNumber == 1) {
+                                                                                console.log("Lol HEREEEEEEEEEEEEE")
+                                                                                return <div className="card-body py-0">
 
-                                                    <h4>Requirements:</h4>
-                                                    <ul className="lab-ul">
-                                                        <li><i className="icofont-tick-mark"></i>Ready to begin working on real-world data modeling projects</li>
-                                                        <li><i className="icofont-tick-mark"></i>Expanded responsibilities as part of an existing role</li>
-                                                        <li><i className="icofont-tick-mark"></i>Be able to create Flyers, Brochures, Advertisements</li>
-                                                        <li><i className="icofont-tick-mark"></i>Find a new position involving data modeling.</li>
-                                                        <li><i className="icofont-tick-mark"></i>Work with color and Gradients and Grids</li>
-                                                    </ul>
-                                                </div>
+                                                                                    <li className=" d-flex flex-wrap justify-content-between">
+                                                                                        <div className="video-item-title">{VedioLost[keyData].Vedioname}</div>
+                                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"></a></div>
+                                                                                    </li>
+
+
+
+
+                                                                                </div>
+
+
+                                                                            }
+
+
+                                                                        })}
+
+
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                        } else {
+                                                            var xData = "acc-" + CourseList[key].SectionNumber
+                                                            var xDataHa = "#acc-" + CourseList[key].SectionNumber
+                                                            return <div className="accordion-item">
+                                                                <div className="accordion-header" id="accordion02">
+                                                                    <button className="d-flex flex-wrap justify-content-between" data-bs-toggle="collapse" data-bs-target={xDataHa} aria-expanded="true" > <span>{CourseList[key].SectionNumber} .{CourseList[key].SectionName}</span> <span>- lessons, -:-</span> </button>
+                                                                </div>
+                                                                <div id={xData} className="accordion-collapse collapse" aria-labelledby="accordion02" data-bs-parent="#accordionExample">
+                                                                    <ul className="lab-ul video-item-list">
+                                                                        {VedioLost.map((val, keyData) => {
+                                                                            try {
+                                                                                if (VedioLost[keyData].SectionNumber == CourseList[key].SectionNumber) {
+                                                                                    return <li className=" d-flex flex-wrap justify-content-between">
+                                                                                        <div className="video-item-title">{VedioLost[keyData].Vedioname}</div>
+                                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"></a></div>
+                                                                                    </li>
+
+                                                                                }
+
+                                                                            } catch (err) {
+
+                                                                            }
+
+
+                                                                        })}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        }
+                                                    } catch {
+
+                                                    }
+                                                })}
 
                                             </div>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <div className="course-video">
-                                                <div className="course-video-title">
-                                                    <h4>Course Content</h4>
-                                                </div>
-                                                <div className="course-video-content">
-                                                    <div className="accordion" id="accordionExample">
-                                                        <div className="accordion-item">
-                                                            <div className="accordion-header" id="accordion01">
-                                                                <button className="d-flex flex-wrap justify-content-between" data-bs-toggle="collapse" data-bs-target="#videolist1" aria-expanded="true" aria-controls="videolist1"><span>1.Introduction</span> <span>5lessons, 17:37</span> </button>
-                                                            </div>
-                                                            <div id="videolist1" className="accordion-collapse collapse show" aria-labelledby="accordion01" data-bs-parent="#accordionExample">
-                                                                <ul className="lab-ul video-item-list">
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">1.1 Welcome to the course 02:30 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">1.2 How to set up your photoshop workspace  08:33 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">1.3 Essential Photoshop Tools 03:38 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">1.4 Finding inspiration 02:30 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">1.5 Choosing Your Format 03:48 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div className="accordion-item">
-                                                            <div className="accordion-header" id="accordion02">
-                                                                <button className="d-flex flex-wrap justify-content-between" data-bs-toggle="collapse" data-bs-target="#videolist2" aria-expanded="true" aria-controls="videolist2"> <span>2.How to Create Mixed Media Art in Adobe Photoshop</span> <span>5 lessons, 52:15</span> </button>
-                                                            </div>
-                                                            <div id="videolist2" className="accordion-collapse collapse" aria-labelledby="accordion02" data-bs-parent="#accordionExample">
-                                                                <ul className="lab-ul video-item-list">
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">2.1 Using Adjustment Layers 06:20 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">2.2 Building the composition 07:33 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">2.3 Photoshop Lighting effects 06:30 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">2.4 Digital Painting using photoshop brushes 08:34 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                    <li className=" d-flex flex-wrap justify-content-between">
-                                                                        <div className="video-item-title">2.5 Finalizing the details 10:30 minutes</div>
-                                                                        <div className="video-item-icon"><a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" className="popup" target="_blank"><i className="icofont-play-alt-2"></i></a></div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </TabPanel>
-                                    </Tabs>
+                                        </div>
+                                    </div>
+
 
                                 </div>
 
@@ -368,8 +452,10 @@ const CourseSingle = (props) => {
                                             </ul>
                                         </div>
 
+
+
                                         {
-                                            EnrolledStatus == "NotEnroleled" && (
+                                            EnrolledStatus == "NotEnroleled" && LoggedStatusFinal == "True" && (
                                                 <div className="course-enroll">
                                                     <a onClick={EnrollStudent} className="lab-btn"><span>Enroll To Course</span></a>
                                                 </div>
@@ -377,7 +463,7 @@ const CourseSingle = (props) => {
                                         }
 
                                         {
-                                            EnrolledStatus == "Pending" && (
+                                            EnrolledStatus == "Pending" && LoggedStatusFinal == "True" && (
                                                 <div className="course-enroll">
                                                     <a onClick={EnrollStudent} className="lab-btn"><span>Pending Enrollement</span></a>
                                                 </div>
@@ -385,12 +471,14 @@ const CourseSingle = (props) => {
                                         }
 
                                         {
-                                            EnrolledStatus == "Enrolled" && (
+                                            EnrolledStatus == "Enrolled" && LoggedStatusFinal == "True" && (
                                                 <div className="course-enroll">
                                                     <Link className="lab-btn" to="/course-view" state={{
                                                         data: {
                                                             "CourseName": CourseDetails.CourseName,
                                                             "CourseID": CourseDetails.ID,
+                                                            "Desc":CourseDetails.BriefDescription,
+                                                            
                                                         }
                                                     }}><h4>View Course Content</h4></Link>
                                                 </div>

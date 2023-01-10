@@ -7,7 +7,7 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 
 import ReactPlayer from 'react-player/youtube'
-
+import { BaseURL} from '../constants'
 
 const socialList = [
     {
@@ -43,26 +43,26 @@ const CourseView = () => {
     const [viewFull, setViewFull] = useState(false);
     const [icon, setIcon] = useState(false);
     const location = useLocation();
-    console.log(location, " useLocation Hook");
+    
     const data = location.state?.data;
-    console.log(data)
+  
 
 
-    const [VidUrl, setVidUrl] = useState("https://www.youtube.com/watch?v=E_aBd6jwKMg")
+    const [VidUrl, setVidUrl] = useState("")
     const [CourseList, setCourseList] = useState([])
     const [VedioLost, setVedioLost] = useState([])
     useEffect(() => {
         const controller = new AbortController();
 
         const fetchDta = async () => {
-            console.log(data.CourseID)
-
-            await Axios.post('http://localhost:8089/course/get-section-per-seubject', {
+           
+            let URL=BaseURL+"/course/get-section-per-seubject"
+            await Axios.post(URL, {
 
                 subjectID: data.CourseID
 
             }).then((response) => {
-                console.log(response.data)
+                
                 setCourseList(response.data)
 
 
@@ -84,15 +84,17 @@ const CourseView = () => {
         const controller = new AbortController();
 
         const fetchDta = async () => {
-            console.log(data.CourseID)
 
-            await Axios.post('http://localhost:8089/course/get-vedio-per-seubject', {
+
+            let URL=BaseURL+"/course/get-vedio-per-seubject"
+            await Axios.post(URL, {
 
                 subjectID: data.CourseID
 
             }).then((response) => {
-                console.log(response.data)
+                console.log(response.data[0].VedioURL,"dayaaa")
                 setVedioLost(response.data)
+                setVidUrl(response.data[0].VedioURL)
 
 
 
@@ -111,7 +113,7 @@ const CourseView = () => {
 
     const CHangeVid = async (event) => {
         var a = (event.target.id)
-        console.log(a)
+        
         setVidUrl(a)
 
 
@@ -144,9 +146,9 @@ const CourseView = () => {
                                                 </div>
                                                 <div className="vp-content mb-5">
                                                     <h4>Summary</h4>
-                                                    <p>This is an excellent course. The content seems very thorough and comprehensive. I like the way all the concepts and configurations are clearly demonstrated in GNS3. There are also a lot of troubleshooting examples and real world applications. I especially enjoyed the practical simlets. </p>
+                                                    <p>{data.Desc} </p>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -166,98 +168,101 @@ const CourseView = () => {
 
 
                                                                     {CourseList.map((val, key) => {
-                                                                        console.log("hereXXXXXXX", key);
-                                                                        if (key == 0) {
-                                                                            return <div className="card active bg-ash mb-1" VIdd={CourseList[key].VedioURL}>
-
-                                                                                <div className="card-header bg-transparent border-bottom-0" id="acc-list-1">
-                                                                                    <h5 className="mb-0">
-                                                                                        <button className="w-100 border-0 bg-transparent outline-none text-left" data-bs-toggle="collapse" data-bs-target="#acc-1" aria-expanded="true" aria-controls="acc-1">
-                                                                                            Section {CourseList[key].SectionNumber} : {CourseList[key].SectionName}
-                                                                                            <span className="d-block font-weight-normal">Videos: 13  |  26:00 Min</span>
-                                                                                            <div className="icon">
-                                                                                                <i className="icofont-thin-down"></i>
-                                                                                            </div>
-                                                                                        </button>
-                                                                                    </h5>
-                                                                                </div>
-                                                                                <div id="acc-1" className="collapse show" aria-labelledby="acc-list-1" data-bs-parent="#accordion">
+                                                                        try {
 
 
 
+                                                                            if (key == 0) {
+                                                                                return <div className="card active bg-ash mb-1" VIdd={CourseList[key].VedioURL}>
 
-
-                                                                                    {VedioLost.map((val, keyData) => {
-                                                                                        console.log(CourseList[key].SectionNumber, "Sectionmnnnn", VedioLost[parseInt(CourseList[key].SectionNumber)].SectionNumber)
-                                                                                        var x = parseInt(VedioLost[key].SectionNumber)
-                                                                                        if (VedioLost[keyData].SectionNumber == 1) {
-                                                                                            console.log("Lol HEREEEEEEEEEEEEE")
-                                                                                            return <div className="card-body py-0">
-
-                                                                                                <div className="course-lists d-flex flex-wrap justify-content-between">
-                                                                                                    <div className="csa-left">
-                                                                                                        <i className="icofont-checked complite"></i>
-                                                                                                        <h6 onClick={CHangeVid} id={VedioLost[keyData].VedioURL} name="EventID" value={VedioLost[keyData].VedioURL}>{VedioLost[keyData].Vedioname}</h6>
-                                                                                                        <p><i className="icofont-play-alt-2"></i>6:00 Min</p>
-                                                                                                    </div>
+                                                                                    <div className="card-header bg-transparent border-bottom-0" id="acc-list-1">
+                                                                                        <h5 className="mb-0">
+                                                                                            <button className="w-100 border-0 bg-transparent outline-none text-left" data-bs-toggle="collapse" data-bs-target="#acc-1" aria-expanded="true" aria-controls="acc-1">
+                                                                                                Section {CourseList[key].SectionNumber} : {CourseList[key].SectionName}
+                                                                                                <span className="d-block font-weight-normal">Videos: 13  |  26:00 Min</span>
+                                                                                                <div className="icon">
+                                                                                                    <i className="icofont-thin-down"></i>
                                                                                                 </div>
+                                                                                            </button>
+                                                                                        </h5>
+                                                                                    </div>
+                                                                                    <div id="acc-1" className="collapse show" aria-labelledby="acc-list-1" data-bs-parent="#accordion">
 
 
-                                                                                            </div>
 
 
-                                                                                        }
 
-
-                                                                                    })}
-
-                                                                                </div>
-                                                                            </div>
-
-                                                                        } else {
-                                                                            var xData = "acc-" + CourseList[key].SectionNumber
-                                                                            var xDataHa = "#acc-" + CourseList[key].SectionNumber
-                                                                            return <div className="card bg-ash mb-1">
-                                                                                <div className="card-header bg-transparent border-bottom-0" >
-                                                                                    <h5 className="mb-0">
-                                                                                        <button className="w-100 border-0 bg-transparent outline-none text-left" data-bs-toggle="collapse" data-bs-target={xDataHa} aria-expanded="true" aria-controls="acc-2">
-                                                                                            Section {CourseList[key].SectionNumber} : {CourseList[key].SectionName}
-                                                                                            <span className="d-block font-weight-normal">Videos: 13  |  26:00 Min</span>
-                                                                                            <div className="icon">
-                                                                                                <i className="icofont-thin-down"></i>
-                                                                                            </div>
-                                                                                        </button>
-                                                                                    </h5>
-                                                                                </div>
-                                                                                <div id={xData} className="collapse" data-bs-parent="#accordion">
-
-                                                                                    {VedioLost.map((val, keyData) => {
-                                                                                        try {
-                                                                                            if (VedioLost[keyData].SectionNumber == CourseList[key].SectionNumber) {
+                                                                                        {VedioLost.map((val, keyData) => {
+                                                                                        
+                                                                                            var x = parseInt(VedioLost[key].SectionNumber)
+                                                                                            if (VedioLost[keyData].SectionNumber == 1) {
+                                                                                              
                                                                                                 return <div className="card-body py-0">
+
                                                                                                     <div className="course-lists d-flex flex-wrap justify-content-between">
                                                                                                         <div className="csa-left">
-                                                                                                            <i className="icofont-square"></i>
-                                                                                                            <h6>{VedioLost[keyData].Vedioname}</h6>
+                                                                                                            <i className="icofont-checked complite"></i>
+                                                                                                            <h6 onClick={CHangeVid} id={VedioLost[keyData].VedioURL} name="EventID" value={VedioLost[keyData].VedioURL}>{VedioLost[keyData].Vedioname}</h6>
                                                                                                             <p><i className="icofont-play-alt-2"></i>6:00 Min</p>
                                                                                                         </div>
                                                                                                     </div>
 
+
                                                                                                 </div>
+
 
                                                                                             }
 
-                                                                                        } catch (err) {
 
-                                                                                        }
+                                                                                        })}
 
-
-                                                                                    })}
-
-
-
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
+
+                                                                            } else {
+                                                                                var xData = "acc-" + CourseList[key].SectionNumber
+                                                                                var xDataHa = "#acc-" + CourseList[key].SectionNumber
+                                                                                return <div className="card bg-ash mb-1">
+                                                                                    <div className="card-header bg-transparent border-bottom-0" >
+                                                                                        <h5 className="mb-0">
+                                                                                            <button className="w-100 border-0 bg-transparent outline-none text-left" data-bs-toggle="collapse" data-bs-target={xDataHa} aria-expanded="true" aria-controls="acc-2">
+                                                                                                Section {CourseList[key].SectionNumber} : {CourseList[key].SectionName}
+                                                                                                <span className="d-block font-weight-normal">Videos: 13  |  26:00 Min</span>
+                                                                                                <div className="icon">
+                                                                                                    <i className="icofont-thin-down"></i>
+                                                                                                </div>
+                                                                                            </button>
+                                                                                        </h5>
+                                                                                    </div>
+                                                                                    <div id={xData} className="collapse" data-bs-parent="#accordion">
+
+                                                                                        {VedioLost.map((val, keyData) => {
+                                                                                            try {
+                                                                                                if (VedioLost[keyData].SectionNumber == CourseList[key].SectionNumber) {
+                                                                                                    return <div className="card-body py-0">
+                                                                                                        <div className="course-lists d-flex flex-wrap justify-content-between">
+                                                                                                            <div className="csa-left">
+                                                                                                                <i className="icofont-square"></i>
+                                                                                                                <h6 onClick={CHangeVid} id={VedioLost[keyData].VedioURL} name="EventID" value={VedioLost[keyData].VedioURL}>{VedioLost[keyData].Vedioname}</h6>
+                                                                                                                <p><i className="icofont-play-alt-2"></i>6:00 Min</p>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+                                                                                                }
+
+                                                                                            } catch (err) {
+
+                                                                                            }
+
+
+                                                                                        })}
+
+
+
+                                                                                    </div>
+                                                                                </div>
 
 
 
@@ -265,10 +270,12 @@ const CourseView = () => {
 
 
 
+
+                                                                            }
+
+                                                                        } catch {
 
                                                                         }
-
-
 
                                                                     })}
 

@@ -1,12 +1,15 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
+import Header from "../component/layout/header-3";
 import PageHeader from "../component/layout/pageheader";
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import FeatureThree from "../component/section/feature-3";
+import FeatureThree from "../component/section/feature-login";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BaseURL} from '../constants'
 const title = "Login";
 const socialTitle = "Login With Social Media";
 const btnText = "Submit Now";
@@ -63,13 +66,26 @@ const LoginPage = () => {
         console.log(StudentDetails.Email)
         console.log(StudentDetails.Password)
         console.log(StudentDetails);
-        await axios.post('http://localhost:8089/student/student-login', {
+
+
+        let URL=BaseURL+"/student/student-login"
+        await axios.post(URL, {
             Email: StudentDetails.Email,
             Password: StudentDetails.Password,
 
         }).then(res => {
             if (res["data"]["Status"]) {
                 console.log("Invalud")
+                toast.success('Sucessfully Enrolled To The Course', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
 
             } else {
 
@@ -95,49 +111,13 @@ const LoginPage = () => {
     }
     return (
         <Fragment>
+            <ToastContainer
+
+            />
             <Header />
             <FeatureThree />
 
-            <div className="login-section padding-tb section-bg">
-                <div className="container">
-                    <div className="account-wrapper">
-                        <h3 className="title">{title}</h3>
-                        <form className="account-form" onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <input
-                                    type="email"
-                                    name="Email"
-                                    placeholder="Enter Email"
-                                    onChange={handleChange}
-                                    value={StudentDetails.Email}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    name="Password"
-                                    placeholder="Enter Password"
-                                    onChange={handleChange}
-                                    value={StudentDetails.Password}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <div className="d-flex justify-content-between flex-wrap pt-sm-2">
-                                    <div className="checkgroup">
-                                        <input type="checkbox" name="remember" id="remember" />
-                                        <label htmlFor="remember">Remember Me</label>
-                                    </div>
-                                    <Link to="/forgetpass">Forget Password?</Link>
-                                </div>
-                            </div>
-                            <div className="form-group text-center">
-                                <button className="d-block lab-btn"><span>{btnText}</span></button>
-                            </div>
-                        </form>
 
-                    </div>
-                </div>
-            </div>
             <Footer />
         </Fragment>
     );
